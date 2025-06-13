@@ -1,0 +1,67 @@
+/* Reset e base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to bottom right, #f0f4f1, #d6e5dc);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1f1f1f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Logo */
+img {
+    max-width: 500px;
+    margin-bottom: 25px;
+}
+
+/* Título */
+h1 {
+    font-size: 2.6rem;
+    color: #2d8c49;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* Botão principal */
+button {
+    background-color: #2d8c49;
+    color: white;
+    padding: 14px 28px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #23713b;
+    transform: scale(1.05);
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    button {
+        width: 90%;
+        font-size: 1rem;
+    }
+
+    img {
+        max-width: 160px;
+    }
+}
