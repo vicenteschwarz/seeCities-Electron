@@ -1,4 +1,3 @@
-// parâmetros
 const tabelaCidades = document.getElementById('cidadesTableDados');
 const idCidade = document.getElementById('city-id')
 const cidade = document.getElementById('city-nome');
@@ -10,11 +9,12 @@ const atracao_t = document.getElementById('tourist-att');
 const botaoSalvar = document.getElementById('btn-salvar');
 const botaoExcluir = document.getElementById('btn-excluir');
 const botaoLimpar = document.getElementById('btn-incluir');
+const campoBusca = document.getElementById('busca-cidade');
 
-// eventos
 botaoSalvar.addEventListener('click', insereOuAttCidade)
 botaoExcluir.addEventListener('click', excluirCidade)
 botaoLimpar.addEventListener('click', limpar)
+campoBusca.addEventListener('input', filtrarCidades)
 
 function limpar() {
     mostrarDetalhes('', '', '', '', '', '', '')
@@ -41,35 +41,39 @@ async function insereOuAttCidade() {
 
     if (pId === '') {
         await window.pi_API.inserirCidades(pCidade, pEstado, pPais, pClima, pCultura, pAtracao_t)
+        alert('Cidade cadastrada com sucesso!');
     } else {
-        console.log("ID que vai para atualizar:", pId)
         await window.pi_API.atualizarCidades(pCidade, pEstado, pPais, pClima, pCultura, pAtracao_t, pId)
+        alert('Cidade atualizada com sucesso!');
     }
 
     carregarCidades()
     mostrarDetalhes('', '', '', '', '', '', '')
 }
-
-
 
 async function excluirCidade() {
     const pId = idCidade.value
     await window.pi_API.deletarCidades(pId)
+    alert('Cidade deletada com sucesso!');
     carregarCidades()
     mostrarDetalhes('', '', '', '', '', '', '')
 }
 
+let listaCidadesGlobal = []
+
 async function carregarCidades() {
     const listaCidades = await window.pi_API.buscarCidades()
+    listaCidadesGlobal = listaCidades;
+    renderizarCidades(listaCidades)
+}
+
+function renderizarCidades(lista) {
     tabelaCidades.innerHTML = ""
-
-    listaCidades.forEach(criarLinhaCidade)
-
-    if (!listaCidades.length > 0) {
+    lista.forEach(criarLinhaCidade)
+    if (!lista.length > 0) {
         tabelaCidades.textContent = 'sem dados'
     }
-
-    lucide.createIcons(); // renderiza os ícones do Lucide
+    lucide.createIcons();
 }
 
 function criarLinhaCidade(cidade) {
@@ -101,19 +105,31 @@ function criarLinhaCidade(cidade) {
 
     const celulaBotao = document.createElement("td");
     const botao = document.createElement("button");
+    botao.classList.add("botao-editar");
+    botao.style.backgroundColor = "#2d8c49";
+    botao.style.color = "white";
+    botao.style.padding = "10px 16px";
+    botao.style.border = "none";
+    botao.style.borderRadius = "8px";
+    botao.style.fontWeight = "bold";
+    botao.style.cursor = "pointer";
+    botao.style.display = "flex";
+    botao.style.alignItems = "center";
+    botao.style.gap = "6px";
+    botao.innerHTML = '<i data-lucide="edit"></i> Editar';
     botao.addEventListener("click", function () {
         mostrarDetalhes(cidade.city, cidade.state, cidade.country, cidade.climate, cidade.culture, cidade.tourist_att, cidade.id)
     });
-    botao.textContent = 'Editar';
-
-    const icone = document.createElement("i")
-    icone.setAttribute("data-lucide", "edit");
-    botao.appendChild(icone);
-
     celulaBotao.appendChild(botao);
     linha.appendChild(celulaBotao);
 
     tabelaCidades.appendChild(linha);
 }
 
-carregarCidades()
+function filtrarCidades() {
+    const termo = campoBusca.value.toLowerCase();
+    const filtradas = listaCidadesGlobal.filter(c => c.city.toLowerCase().includes(termo));
+    renderizarCidades(filtradas);
+}
+
+carregarCidades();
