@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cidades.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <title>Cidades</title>
+    <img id="logo-boa" src="seeCities-logo-boa.png" alt="logo">
+</head>
+
+<body>
+
+    <!--modal-->
+    <div id="modal">
+        <button id="btn-incluir">
+        <i data-lucide="plus"></i>
+        Nova Cidade
+    </button>
+
+        <h3>Edite os dados do Aluno:</h3>
+
+        <label>ID: <input type="text" id="city-id" readonly />
+        </label>
+        <br>
+        <label>City: <input type="text" id="city-nome">
+        </label>
+        <br>
+        <labe>State: <input type="text" id="state-nome">
+            </label>
+            <br>
+            <labe>Country: <input type="text" id="country-nome">
+                </label>
+                <br>
+                <labe>Climate: <input type="text" id="climate-nome">
+                    </label>
+                    <br>
+                    <labe>Culture: <input type="text" id="culture-nome">
+                        </label>
+                        <br>
+                        <labe>Tourist Attractions: <input type="text" id="tourist-att">
+                            </label>
+                            <br>
+                            <button id="btn-salvar" style="padding: 10px 16px;"><i data-lucide="check"></i>
+                                Save</button>
+                            <button id="btn-excluir"><i data-lucide="trash-2"></i> Delete</button>
+    </div>
+    <br>
+    <br>
+    <div style="display: flex; justify-content: flex-start; margin: 30px 10px 20px 40px;">
+        <input type="text" id="busca-cidade" placeholder="Pesquisar cidade..."
+            style="padding: 12px 20px; border-radius: 8px; width: 400px; border: 1px solid #ccc; font-size: 1rem;">
+    </div>
+    <table class='table' id="cidadesTable">
+        <thead>
+            <tr>
+                <th>City</th>
+                <th>State</th>
+                <th>Country</th>
+                <th>Climate</th>
+                <th>Culture</th>
+                <th>Tourist Attractions</th>
+            </tr>
+        </thead>
+        <tbody id="cidadesTableDados">
+        </tbody>
+    </table>
+
+
+    <!--modal
+    <div id="modal" >
+        <h3>Edite os dados do Aluno:</h3>
+
+        <label>ID: <input type="text" id="city-id" readonly /> 
+        </label>
+        <br>
+        <label>City: <input type="text" id="city-nome">       
+        </label>
+         <br>
+        <labe>State: <input type="text" id="state-nome">
+        </label>
+        <br>
+        <labe>Country: <input type="text" id="country-nome">
+        </label>
+        <br>
+        <labe>Climate: <input type="text" id="climate-nome">
+        </label>
+        <br>
+        <labe>Culture: <input type="text" id="culture-nome">
+        </label>
+        <br>
+        <labe>Tourist Attractions: <input type="text" id="tourist-att">
+        </label>
+        <br>
+        <button id="btn-salvar">Save</button>
+        <button id="btn-excluir">Delete</button>
+    </div>
+-->
+
+    <script src="cidades.js"></script>
+</body>
+
+</html>
