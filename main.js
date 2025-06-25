@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require('electron');
-const { createMainWindow } = require('./janelaPrincipal');
+const {createMainWindow} = require('./janelaPrincipal')
+const { createLoginWindow} = require('./janelaPrincipal');
 const { registrarListeners } = require('./appListeners');
 
 if (process.env.NODE_ENV !== 'production') {
@@ -12,18 +13,33 @@ if (process.env.NODE_ENV !== 'production') {
     }
 }
 
-app.whenReady().then(function () {
 
-    createMainWindow();
+app.whenReady().then(function () {
+    
     registrarListeners()
     app.on('activate', function () {
         if (BrowserWindow.getAllWindows().length === 0) {
-            createMainWindow();
+            createLoginWindow();
         }
     });
 }
 );
 
+
+app.whenReady().then(function () {
+
+    createLoginWindow();
+    registrarListeners()
+    app.on('activate', function () {
+        if (BrowserWindow.getAllWindows().length === 0) {
+            createLoginWindow();
+        }
+    });
+}
+);
+
+
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') app.quit();
 });
+

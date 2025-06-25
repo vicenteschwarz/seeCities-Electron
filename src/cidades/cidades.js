@@ -68,12 +68,18 @@ async function carregarCidades() {
 }
 
 function renderizarCidades(lista) {
+
+    console.time("carregarCidades");
+
     tabelaCidades.innerHTML = ""
     lista.forEach(criarLinhaCidade)
     if (!lista.length > 0) {
         tabelaCidades.textContent = 'sem dados'
     }
     lucide.createIcons();
+
+    console.timeEnd("carregarCidades");
+
 }
 
 function criarLinhaCidade(cidade) {

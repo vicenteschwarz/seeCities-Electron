@@ -39,8 +39,13 @@ function deletarUsers(id) {
 function atualizarUsers(name, login, password, email, id) {
     return ipcRenderer.invoke('att-user', name, login, password, email,id);
 }
-function inserirUsers(name, login, password, email, role) {
+function inserirUsers(name, login, password, email) {
     return ipcRenderer.invoke('inserir-users', name, login, password, email);
+}
+//login
+
+function loginValidation(usuario, senha){
+    return ipcRenderer.invoke('validar-login',usuario, senha)
 }
 
 // EXPORTAÇÃO SEGURA
@@ -49,14 +54,18 @@ contextBridge.exposeInMainWorld('pi_API', {
     deletarCidades,
     atualizarCidades,
     inserirCidades,
+
     buscarDevs,
     deletarDevs,
     atualizarDevs,
     inserirDevs,
+    
     buscarUsers,
     deletarUsers,
     atualizarUsers,
-    inserirUsers
+    inserirUsers,
+
+    loginValidation
 });
 
 function windowCidades() {
@@ -68,9 +77,18 @@ function windowDevs() {
 function windowUsers() {
     ipcRenderer.send('window-users');
 }
+function createMainWindow(){
+    ipcRenderer.send('window')
+}
+function createMainWindowUser(){
+    ipcRenderer.send('windowUserMain')
+}
+
 
 contextBridge.exposeInMainWorld('windows_API', {
     windowCidades,
     windowDevs,
-    windowUsers
+    windowUsers,
+    createMainWindow,
+    createMainWindowUser
 });

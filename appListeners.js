@@ -28,6 +28,12 @@ const {
     abrirModalUsers
 } = require("./janelaModal");
 
+const {loginValidation} = require('./src/cidades/login/login_db')
+
+const {createMainWindow} = require('./janelaPrincipal')
+
+const {createMainWindowUser} = require('./janelaPrincipal')
+
 function registrarCidadesHandler(){
     ipcMain.handle('buscar-cidades', buscarCidades)
     ipcMain.handle('deletar-cidades', deletarCidades)
@@ -49,10 +55,16 @@ function registrarUsersHandler(){
     ipcMain.handle('inserir-users', inserirUsers)
 }
 
+function registrarLoginHandler(){
+    ipcMain.handle('validar-login', loginValidation)
+}
+
 function registrarJanelas(){
     ipcMain.on('window-cidades', abrirModalCidades)
     ipcMain.on('window-devs', abrirModalDevs)
     ipcMain.on('window-users', abrirModalUsers)
+    ipcMain.on('window', createMainWindow)
+    ipcMain.on('windowUserMain', createMainWindowUser)
 }
 
 function registrarListeners(){
@@ -60,6 +72,7 @@ function registrarListeners(){
     registrarDevsHandler()
     registrarUsersHandler()
     registrarJanelas()
+    registrarLoginHandler()
 }
 
 module.exports = {

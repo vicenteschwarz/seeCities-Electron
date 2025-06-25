@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Devs</title>
+    <link rel="stylesheet" href="devs.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <img id="logo-boa" src="seeCities-logo-boa.png" alt="logo"> 
+</head>
+<body>
+    
+
+    <div id="modal">
+        <button id="btn-incluir">
+        <i data-lucide="plus"></i> Novo Dev
+    </button>
+        <h3>Editar Dev</h3>
+
+        <label>ID: <input type="text" id="dev-id" readonly /></label><br>
+        <label>Nome: <input type="text" id="dev-nome"></label><br>
+        <label>Login: <input type="text" id="dev-login"></label><br>
+        <label>Senha: <input type="password" id="dev-password"></label><br>
+        <label>Email: <input type="text" id="dev-email"></label><br>
+
+        <button id="btn-salvar"><i data-lucide="check"></i> Salvar</button>
+        <button id="btn-excluir"><i data-lucide="trash-2"></i> Excluir</button>
+    </div>
+
+    <div style="display: flex; justify-content: flex-start; margin: 30px 10px 20px 40px;">
+        <input type="text" id="busca-dev" placeholder="Pesquisar dev..." style="padding: 12px 20px; border-radius: 8px; width: 400px; border: 1px solid #ccc; font-size: 1rem;">
+    </div>
+
+    <table class="table" id="devsTable">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Login</th>
+                <th>Senha</th>
+                <th>Email</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="devsTableDados"></tbody>
+    </table>
+
+    <script src="devs.js"></script>
+</body>
+</html>

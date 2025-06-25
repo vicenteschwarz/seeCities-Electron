@@ -7,15 +7,18 @@
     <link rel="stylesheet" href="cidades.css">
     <script src="https://unpkg.com/lucide@latest"></script>
     <title>Cidades</title>
+    <img id="logo-boa" src="seeCities-logo-boa.png" alt="logo">
 </head>
 
 <body>
-    <button id="btn-incluir">
-        <i data-lucide="plus"></i>
-    </button>
 
     <!--modal-->
     <div id="modal">
+        <button id="btn-incluir">
+        <i data-lucide="plus"></i>
+        Nova Cidade
+    </button>
+
         <h3>Edite os dados do Aluno:</h3>
 
         <label>ID: <input type="text" id="city-id" readonly />
@@ -63,6 +66,8 @@
         <tbody id="cidadesTableDados">
         </tbody>
     </table>
+    <div id="paginacao" style="margin-top: 20px; display: flex; justify-content: center;"></div>
+
 
 
     <!--modal

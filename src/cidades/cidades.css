@@ -32,6 +32,12 @@ body {
     background-color: #23713b;
 }
 
+img{
+    max-width: 200px;
+    margin-bottom: -80px;
+    margin-left: 30px;
+
+}
 /* Tabela */
 .table {
     position: auto;
@@ -60,6 +66,37 @@ body {
 
 .table td {
     color: #333;
+}
+
+#paginacao {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+#paginacao button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+#paginacao button:hover {
+    background-color: #e0e0e0;
+}
+
+#paginacao button.active {
+    background-color: #2d8c49;
+    color: white;
+    font-weight: bold;
 }
 
 

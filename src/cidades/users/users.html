@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Users</title>
+    <link rel="stylesheet" href="users.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <img id="logo-boa" src="seeCities-logo-boa.png" alt="logo">
+</head>
+<body>
+
+    <div id="modal">
+        <button id="btn-incluir">
+        <i data-lucide="plus"></i> Novo User
+    </button>
+        <h3>Editar User</h3>
+
+        <label>ID: <input type="text" id="user-id" readonly /></label><br>
+        <label>Nome: <input type="text" id="user-nome"></label><br>
+        <label>Login: <input type="text" id="user-login"></label><br>
+        <label>Senha: <input type="password" id="user-password"></label><br>
+        <label>Email: <input type="text" id="user-email"></label><br>
+
+        <button id="btn-salvar"><i data-lucide="check"></i> Salvar</button>
+        <button id="btn-excluir"><i data-lucide="trash-2"></i> Excluir</button>
+    </div>
+
+    <div style="display: flex; justify-content: flex-start; margin: 30px 10px 20px 40px;">
+        <input type="text" id="busca-user" placeholder="Pesquisar user..." style="padding: 12px 20px; border-radius: 8px; width: 400px; border: 1px solid #ccc; font-size: 1rem;">
+    </div>
+
+    <table class="table" id="usersTable">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Login</th>
+                <th>Senha</th>
+                <th>Email</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="usersTableDados"></tbody>
+    </table>
+
+    <script src="users.js"></script>
+</body>
+</html>
