@@ -5,6 +5,7 @@ const nome = document.getElementById('user-nome');
 const login = document.getElementById('user-login');
 const senha = document.getElementById('user-password');
 const email = document.getElementById('user-email');
+const perfilUser = document.getElementById('perfil-user');
 const botaoSalvar = document.getElementById('btn-salvar');
 const botaoExcluir = document.getElementById('btn-excluir');
 const botaoLimpar = document.getElementById('btn-incluir');
@@ -19,12 +20,14 @@ function limpar() {
     mostrarDetalhes('', '', '', '', '', '')
 }
 
-function mostrarDetalhes(name, loginTxt, password, emailTxt, id) {
+function mostrarDetalhes(name, loginTxt, password, emailTxt, perfil, id) {
     nome.value = name;
     login.value = loginTxt;
     senha.value = password;
     email.value = emailTxt;
+    perfilUser.value = perfil
     idUser.value = id;
+    
 }
 
 async function insereOuAttUser() {
@@ -32,6 +35,7 @@ async function insereOuAttUser() {
     const pLogin = login.value
     const pSenha = senha.value
     const pEmail = email.value
+    const pPerfil = perfilUser.value
     const pId = idUser.value
     
     if (pSenha.length !== 4){
@@ -44,10 +48,10 @@ async function insereOuAttUser() {
         }
         
     if (pId === '') {
-        await window.pi_API.inserirUsers(pNome, pLogin, pSenha, pEmail)
+        await window.pi_API.inserirUsers(pNome, pLogin, pSenha, pEmail, pPerfil)
         alert('User cadastrado com sucesso!');
     } else {
-        await window.pi_API.atualizarUsers(pNome, pLogin, pSenha, pEmail, pId)
+        await window.pi_API.atualizarUsers(pNome, pLogin, pSenha, pEmail, pPerfil, pId)
         alert('User atualizado com sucesso!');
     }
 
@@ -88,6 +92,7 @@ function criarLinhaUser(user) {
         <td>${user.login_users}</td>
         <td>${user.password_users || ''}</td>
         <td>${user.email_users || ''}</td>
+        <td>${user.perfil || ''}</td>
     `;
 
     const celulaBotao = document.createElement("td");
@@ -95,12 +100,13 @@ function criarLinhaUser(user) {
     botao.classList.add("botao-editar");
     botao.innerHTML = '<i data-lucide="edit"></i> Editar';
     botao.addEventListener("click", function () {
-        mostrarDetalhes(user.name_users, user.login_users, user.password_users, user.email_users, user.id_users)
+        mostrarDetalhes(user.name_users, user.login_users, user.password_users, user.email_users, user.perfil, user.id_users)
     });
     celulaBotao.appendChild(botao);
     linha.appendChild(celulaBotao);
 
     tabelaUsers.appendChild(linha);
+    console.log(user.perfil)
 }
 
 function filtrarUsers() {

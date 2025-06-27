@@ -36,11 +36,11 @@ function buscarUsers() {
 function deletarUsers(id) {
     return ipcRenderer.invoke('deletar-users', id);
 }
-function atualizarUsers(name, login, password, email, id) {
-    return ipcRenderer.invoke('att-user', name, login, password, email,id);
+function atualizarUsers(name, login, password, email, perfil, id) {
+    return ipcRenderer.invoke('att-user', name, login, password, email, perfil, id);
 }
-function inserirUsers(name, login, password, email) {
-    return ipcRenderer.invoke('inserir-users', name, login, password, email);
+function inserirUsers(name, login, password, email, perfil) {
+    return ipcRenderer.invoke('inserir-users', name, login, password, email, perfil);
 }
 //login
 

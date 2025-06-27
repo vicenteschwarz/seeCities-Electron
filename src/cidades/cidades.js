@@ -16,6 +16,55 @@ botaoExcluir.addEventListener('click', excluirCidade)
 botaoLimpar.addEventListener('click', limpar)
 campoBusca.addEventListener('input', filtrarCidades)
 
+function aplicarRestricoesParaUser() {
+    const perfil = localStorage.getItem('perfilLogado');
+    if (perfil === 'USER') {
+        
+        cidade.disabled = true;
+        estado.disabled = true;
+        pais.disabled = true;
+        cultura.disabled = true;
+        
+        botaoExcluir.style.display = 'none'
+        botaoLimpar.style.display = 'none';
+
+        botaoSalvar.removeEventListener('click', insereOuAttCidade);
+        botaoSalvar.addEventListener('click', atualizarClimaAtracaoApenas);
+    }
+}
+
+async function atualizarClimaAtracaoApenas() {
+    const pId = idCidade.value;
+    const pClima = clima.value;
+    const pAtracao = atracao_t.value;
+
+    if (!pId) {
+        alert('Selecione uma cidade para editar.');
+        return;
+    }
+    
+    const cidadeOriginal = listaCidadesGlobal.find(c => c.id == pId);
+    if (!cidadeOriginal) {
+        alert('Cidade não encontrada.');
+        return;
+    }
+
+    await window.pi_API.atualizarCidades(
+        cidadeOriginal.city,
+        cidadeOriginal.state,
+        cidadeOriginal.country,
+        pClima,
+        cidadeOriginal.culture,
+        pAtracao,
+        pId
+    );
+
+    alert('Clima e Atrações atualizados com sucesso!');
+    carregarCidades();
+    mostrarDetalhes('', '', '', '', '', '', '');
+}
+
+
 function limpar() {
     mostrarDetalhes('', '', '', '', '', '', '')
 }
@@ -139,3 +188,5 @@ function filtrarCidades() {
 }
 
 carregarCidades();
+aplicarRestricoesParaUser();
+
